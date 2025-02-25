@@ -70,9 +70,9 @@ resource "helm_release" "kbot_app" {
       name  = "gateway.hostname"
       value = "quietly-just-ferret.ngrok-free.app"
     }
-  set [{
+  set {
       name  = "gateway.path"
       value = "/prod"
-    }]
+    }
   
 }
