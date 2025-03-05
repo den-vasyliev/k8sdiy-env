@@ -61,4 +61,5 @@ alias k=kubectl
 #   --url=https://github.com/org/app \
 #   --username=flux \
 #   --password=${GITHUB_TOKEN}
-# # kubectl create secret generic github-auth --from-literal=token=${GITHUB_TOKEN} -n app-preview
+##
+kubectl create secret generic github-auth --from-literal=password=${GITHUB_TOKEN} --from-literal=username=flux -n app-preview

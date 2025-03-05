@@ -41,13 +41,10 @@ provider "github" {
   token = var.github_token
 }
 
-provider "kind" {}
-
 provider "helm" {
   kubernetes {
-    host                   = kind_cluster.this.endpoint
-    client_certificate     = kind_cluster.this.client_certificate
-    client_key             = kind_cluster.this.client_key
-    cluster_ca_certificate = kind_cluster.this.cluster_ca_certificate
+    host                   = data.google_container_cluster.main.endpoint
+    cluster_ca_certificate = base64decode(data.google_container_cluster.main.master_auth.0.cluster_ca_certificate)
+    token                  = data.google_client_config.current.access_token
   }
 }

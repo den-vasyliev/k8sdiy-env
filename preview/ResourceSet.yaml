@@ -46,6 +46,8 @@ spec:
         values:
           gateway:
             hostname: quietly-just-ferret.ngrok-free.app
+            parentGatewayName: eg
+            parentGatewayNamespace: envoy-gateway-system
             path: /pr-<< inputs.id >>
           image:
             tag: << inputs.sha >>
