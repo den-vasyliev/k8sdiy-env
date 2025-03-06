@@ -58,7 +58,7 @@ EOF
 
 ## Expose Kibana service
 kubectl get kibana
-kubectl expose deployment quickstart-kb --port 80 --target-port 5601 --type LoadBalancer
+kubectl expose deployment quickstart-kb --port 443 --target-port 5601 --type LoadBalancer
 kubectl get secret quickstart-es-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode; echo
 
 ## Add HashiCorp Helm repository and update
