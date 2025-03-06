@@ -26,6 +26,7 @@ resource "google_container_cluster" "this" {
 }
 
 resource "google_container_node_pool" "this" {
+  count      = var.kind_enabled ? 0 : 1
   name       = var.GKE_POOL_NAME
   project    = google_container_cluster.this[0].project
   cluster    = google_container_cluster.this[0].name
