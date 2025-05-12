@@ -1,4 +1,15 @@
-# kbot secret
+# Install K9S to manage the cluster
+curl -sS https://webi.sh/k9s | sh
+
+# Create alias for k9s, kubectl and command-line autocompletion
+alias kk="EDITOR='code --wait' k9s"
+alias k=kubectl
+
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.27.0/kind-linux-amd64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+kind create cluster
+
 # kubelet rotation
 
 # Add HashiCorp Helm repository and update
