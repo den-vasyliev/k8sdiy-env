@@ -1,0 +1,108 @@
+# Default values for ed210.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+owner: sre
+replicaCount: 1
+
+image:
+  repository: ghcr.io/den-vasyliev/cp-ed210
+  pullPolicy: Never
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: c8bfbe1f195e9d86c19f25be39d1d899b727a713
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8080
+
+serviceMetrics:
+  type: ClusterIP
+  port: 8089
+
+mcp:
+  type: ClusterIP
+  port: 8090
+
+probes:
+  port: 8081
+
+serviceMonitor:
+  enabled: false
+  portName: http-metrics
+  interval: 30s
+
+ingress:
+  enabled: false
+  className: nginx-ext-http
+  annotations:
+    kubernetes.io/tls-acme: "true"
+  hosts:
+  - host: ed210.shared.gfknewron.com
+    paths:
+    - path: /
+      pathType: Prefix
+  tls:
+  - secretName: acme-ed210.shared.gfknewron.com
+    hosts:
+    - ed210.shared.gfknewron.com
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 128Mi
+  requests:
+    cpu: 300m
+    memory: 128Mi
+
+logLevel: trace
+
+dryRun: true
+
+secret:
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# Additional volumes on the output Deployment definition.
+volumes: []
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

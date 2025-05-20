@@ -1,0 +1,233 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: test-service-1-app
+  namespace: dev
+  labels:
+    app.kubernetes.io/name: test-service-1-app
+    version: master-3.0.0-3c3f993
+    image: test-service-1-app
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test-service-1-app
+  componentKinds:
+    - group: v1
+      kind: Deployment
+  addOwnerRef: true
+  descriptor:
+    type: test-app
+    version: master-3.0.0-3c3f993
+    description: "Test application 1 for dev environment"
+    keywords: ["test", "app", "dev"]
+    links:
+      - description: About
+        url: "https://example.com/test-service-1-app"
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: test-service-2-app
+  namespace: dev
+  labels:
+    app.kubernetes.io/name: test-service-2-app
+    version: master-3.0.0-3c3f993
+    image: test-service-2-app
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test-service-2-app
+  componentKinds:
+    - group: v1
+      kind: Deployment
+  addOwnerRef: true
+  descriptor:
+    type: test-app
+    version: master-3.0.0-3c3f993
+    description: "Test application 2 for dev environment"
+    keywords: ["test", "app", "dev"]
+    links:
+      - description: About
+        url: "https://example.com/test-service-2-app"
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: test-service-3-app
+  namespace: dev
+  labels:
+    app.kubernetes.io/name: test-service-3-app
+    version: master-3.0.0-3c3f993
+    image: test-service-3-app
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test-service-3-app
+  componentKinds:
+    - group: v1
+      kind: Deployment
+  addOwnerRef: true
+  descriptor:
+    type: test-app
+    version: master-3.0.0-3c3f993
+    description: "Test application 3 for dev environment"
+    keywords: ["test", "app", "dev"]
+    links:
+      - description: About
+        url: "https://example.com/test-service-3-app"
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: test-service-1-app
+  namespace: stable
+  labels:
+    app.kubernetes.io/name: test-service-1-app
+    version: master-2.0.0-3c3f992
+    image: test-service-1-app
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test-service-1-app
+  componentKinds:
+    - group: v1
+      kind: Deployment
+  addOwnerRef: true
+  descriptor:
+    type: test-app
+    version: master-2.0.0-3c3f992
+    description: "Test application 1 for stable environment"
+    keywords: ["test", "app", "stable"]
+    links:
+      - description: About
+        url: "https://example.com/test-service-1-app"
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: test-service-2-app
+  namespace: stable
+  labels:
+    app.kubernetes.io/name: test-service-2-app
+    version: master-2.0.0-3c3f992
+    image: test-service-2-app
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test-service-2-app
+  componentKinds:
+    - group: v1
+      kind: Deployment
+  addOwnerRef: true
+  descriptor:
+    type: test-app
+    version: master-2.0.0-3c3f992
+    description: "Test application 2 for stable environment"
+    keywords: ["test", "app", "stable"]
+    links:
+      - description: About
+        url: "https://example.com/test-service-2-app"
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: test-service-3-app
+  namespace: stable
+  labels:
+    app.kubernetes.io/name: test-service-3-app
+    version: master-2.0.0-3c3f992
+    image: test-service-3-app
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test-service-3-app
+  componentKinds:
+    - group: v1
+      kind: Deployment
+  addOwnerRef: true
+  descriptor:
+    type: test-app
+    version: master-2.0.0-3c3f992
+    description: "Test application 3 for stable environment"
+    keywords: ["test", "app", "stable"]
+    links:
+      - description: About
+        url: "https://example.com/test-service-3-app"
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: test-service-1-app
+  namespace: prod
+  labels:
+    app.kubernetes.io/name: test-service-1-app
+    version: master-1.0.0-3c3f991
+    image: test-service-1-app
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test-service-1-app
+  componentKinds:
+    - group: v1
+      kind: Deployment
+  addOwnerRef: true
+  descriptor:
+    type: test-app
+    version: master-1.0.0-3c3f991
+    description: "Test application 1 for prod environment"
+    keywords: ["test", "app", "prod"]
+    links:
+      - description: About
+        url: "https://example.com/test-service-1-app"
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: test-service-2-app
+  namespace: prod
+  labels:
+    app.kubernetes.io/name: test-service-2-app
+    version: master-1.0.0-3c3f991
+    image: test-service-2-app
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test-service-2-app
+  componentKinds:
+    - group: v1
+      kind: Deployment
+  addOwnerRef: true
+  descriptor:
+    type: test-app
+    version: master-1.0.0-3c3f991
+    description: "Test application 2 for prod environment"
+    keywords: ["test", "app", "prod"]
+    links:
+      - description: About
+        url: "https://example.com/test-service-2-app"
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: test-service-3-app
+  namespace: prod
+  labels:
+    app.kubernetes.io/name: test-service-3-app
+    version: master-1.0.0-3c3f991
+    image: test-service-3-app
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test-service-3-app
+  componentKinds:
+    - group: v1
+      kind: Deployment
+  addOwnerRef: true
+  descriptor:
+    type: test-app
+    version: master-1.0.0-3c3f991
+    description: "Test application 3 for prod environment"
+    keywords: ["test", "app", "prod"]
+    links:
+      - description: About
+        url: "https://example.com/test-service-3-app" 

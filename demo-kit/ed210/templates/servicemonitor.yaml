@@ -1,0 +1,18 @@
+{{- if .Values.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "ed210.fullname" . }}
+  labels:
+    {{- include "ed210.labels" . | nindent 4 }}
+spec:
+  endpoints:
+  - interval: {{ .Values.serviceMonitor.interval }}
+    port: {{ .Values.serviceMonitor.portName }}
+  selector:
+    matchLabels:
+      {{- include "ed210.selectorLabels" . | nindent 6 }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+{{- end }}

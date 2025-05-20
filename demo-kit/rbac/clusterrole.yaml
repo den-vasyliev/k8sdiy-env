@@ -1,0 +1,14 @@
+elapiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: promotionplans-manager
+rules:
+- apiGroups: ["apps.gfk.com"]
+  resources: ["promotionplans", "promotionflows", "rbac", "environments", "notifications"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["coordination.k8s.io"]
+  resources: ["leases"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["app.k8s.io"]
+  resources: ["applications"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
