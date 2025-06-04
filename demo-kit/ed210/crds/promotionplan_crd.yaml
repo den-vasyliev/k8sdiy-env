@@ -1,0 +1,90 @@
+# promotionplan-crd.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: promotionplans.apps.gfk.com
+spec:
+  group: apps.gfk.com
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      additionalPrinterColumns:
+      - name: State
+        type: string
+        jsonPath: .status.currentState
+      - name: Processing
+        type: integer
+        jsonPath: .status.processingRecords
+      - name: Completed
+        type: integer
+        jsonPath: .status.completedRecords
+      - name: Last-Updated
+        type: string
+        jsonPath: .status.lastUpdated
+      - name: Age
+        type: date
+        jsonPath: .metadata.creationTimestamp
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                records:
+                  type: array
+                  items:
+                    type: object
+                    required: ["name", "namespace", "version", "image", "source_image"]
+                    properties:
+                      name:
+                        type: string
+                        description: "Application name"
+                      namespace:
+                        type: string
+                        description: "Target namespace"
+                      version:
+                        type: string
+                        description: "Application version"
+                      image:
+                        type: string
+                        description: "Target image"
+                      kind:
+                        type: string
+                        description: "Application kind"
+                      source_image:
+                        type: string
+                        description: "Source image to be promoted"
+                      tagged_image:
+                        type: string
+                        description: "Tagged image"
+                      status:
+                        type: string
+                        enum: ["new", "processing", "completed", "failed"]
+                        default: "new"
+                      timestamp:
+                        type: string
+                        description: "Record creation timestamp in ISO 8601 format"
+                        pattern: "^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])Z$"
+            status:
+              type: object
+              properties:
+                processingRecords:
+                  type: integer
+                completedRecords:
+                  type: integer
+                currentState:
+                  type: string
+                  enum: ["new", "processing", "completed", "failed"]
+                  default: "new"
+                lastUpdated:
+                  type: string
+                  pattern: "^([0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])Z$"
+  scope: Namespaced
+  names:
+    plural: promotionplans
+    singular: promotionplan
+    kind: PromotionPlan
+    shortNames:
+    - pp

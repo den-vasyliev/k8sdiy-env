@@ -1,0 +1,10 @@
+apiVersion: apps.gfk.com/v1alpha1
+kind: PromotionFlow
+metadata:
+  name: default-flow
+  namespace: ed210
+spec:
+  flowMap:
+    dev: stable
+    stable: prod
+    prod: prod

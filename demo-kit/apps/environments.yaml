@@ -1,0 +1,37 @@
+apiVersion: apps.gfk.com/v1alpha1
+kind: Environment
+metadata:
+  name: dev
+spec:
+  cluster:
+    name: kind-preview  
+    namespace: dev
+  registry:
+    url: europe-docker.pkg.dev/gfk-eco-shared-blue
+    prefix: newron-dev
+---
+apiVersion: apps.gfk.com/v1alpha1
+kind: Environment
+metadata:
+  name: stable
+spec:
+  cluster:
+    name: kind-preview  
+    namespace: stable
+  registry:
+    url: europe-docker.pkg.dev/gfk-eco-shared-blue
+    prefix: newron-stable
+---
+apiVersion: apps.gfk.com/v1alpha1
+kind: Environment
+metadata:
+  name: prod
+spec:
+  cluster:
+    name: kind-preview  
+    namespace: prod
+  registry:
+    url: europe-docker.pkg.dev/gfk-eco-shared-blue
+    prefix: newron-prod
+  provider: gcp
+---

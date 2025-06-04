@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ed210.fullname" . }}-metrics
+  labels:
+    {{- include "ed210.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.serviceMetrics.type }}
+  ports:
+  - port: {{ .Values.serviceMetrics.port }}
+    targetPort: {{ .Values.serviceMetrics.port }}
+    protocol: TCP
+    name: http-metrics
+  selector:
+    {{- include "ed210.selectorLabels" . | nindent 4 }}

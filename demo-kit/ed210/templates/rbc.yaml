@@ -1,0 +1,17 @@
+apiVersion: apps.gfk.com/v1alpha1
+kind: RBAC
+metadata:
+  name: ed210-mcp
+  namespace: ed210
+spec:
+  contexts:
+    - name: mcp
+      token: mcp
+      role: mcp
+  tokens:
+    - name: mcp
+      token: "ZWQyMTAtam9ibg"
+  roles:
+    - name: mcp
+      allowedCommands: ["list", "diff", "state", "plan", "version", "help"]
+      readOnly: true

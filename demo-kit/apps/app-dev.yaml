@@ -1,0 +1,10 @@
+apiVersion: ed.gfk.com/v1
+kind: Application
+metadata:
+  name: ed210-job
+  namespace: dev
+spec:
+  image: cp-ed210:master-v1.0.0-53-g0c96955
+  type: job
+  env: dev
+  description: Demo job in dev 

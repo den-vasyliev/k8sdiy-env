@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ed210.fullname" . }}-mcp
+  labels:
+    {{- include "ed210.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.mcp.type }}
+  ports:
+  - port: {{ .Values.mcp.port }}
+    targetPort: {{ .Values.mcp.port }}
+    protocol: TCP
+    name: http-mcp
+  selector:
+    {{- include "ed210.selectorLabels" . | nindent 4 }}
+    
