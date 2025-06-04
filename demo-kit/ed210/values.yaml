@@ -7,9 +7,9 @@ replicaCount: 1
 
 image:
   repository: ghcr.io/den-vasyliev/cp-ed210
-  pullPolicy: Never
+    #pullPolicy: Never
   # Overrides the image tag whose default is the chart appVersion.
-  tag: c8bfbe1f195e9d86c19f25be39d1d899b727a713
+  tag: 11115a5bec47ddf1f4ca9616662047732ab5f811
 
 imagePullSecrets: []
 nameOverride: ""
